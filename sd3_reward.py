@@ -179,7 +179,7 @@ class SD3Transformer2DRewardModel(
         if self.reward_token == "special":
             self.add_token = nn.Parameter(torch.zeros(1, reward_num, self.inner_dim))
 
-        self.reward_norm = nn.LayerNorm(self.inner_dim, elementwise_affine=False, eps=1e-6)
+        self.reward_norm = nn.LayerNorm(self.inner_dim)
 
         if rm_head_type == "linear":
             self.rm_head = nn.Linear(self.inner_dim, output_dim, bias=False)
