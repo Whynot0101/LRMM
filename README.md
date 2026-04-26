@@ -120,7 +120,7 @@ To quickly evaluate the trained model's accuracy and tie rate on a specific test
 ```bash
 python validate.py \
   --transformer_path whynot0128/LRMM-SD3 \
-  --model_path [stabilityai/stable-diffusion-3-medium-diffusers](https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers) \
+  --model_path stabilityai/stable-diffusion-3-medium-diffusers \
   --train_data_dir data/HPDv3 \
   --cache_dir ./huggingface_cache/datasets \
   --timestep 1
