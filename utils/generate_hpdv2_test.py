@@ -3,7 +3,7 @@ import os
 from datasets import load_dataset
 from tqdm import tqdm
 import json
-train_data_dir = 'HPDv2'
+train_data_dir = 'data/HPDv2'
 data_files = {"test": os.path.join(train_data_dir, "test.json")}
 dataset = load_dataset("json", data_files=data_files)["test"]
 data = []
@@ -19,5 +19,5 @@ for example in tqdm(dataset):
     })
 
 
-with open('HPDv2_test.json', 'w') as f:
+with open('data/HPDv2_test.json', 'w') as f:
     json.dump(data, f, indent=4)
