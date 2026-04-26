@@ -33,7 +33,10 @@ mkdir -p data
 ```
 
 ### 📥 Download HPDv3
-*(Follow standard HPDv3 download procedures to place data into `data/HPDv3`)*
+```bash
+hf download ymhao/HPDv3 --repo-type dataset --local-dir data/HPDv3
+python utils/generate_hpdv3_test.py
+```
 
 ### 📥 Download ImageRewardDB
 ```bash
@@ -94,6 +97,12 @@ python gradio_demo/demo.py
 ## 🚀 Training
 
 To train the LRMM-SD3 reward model on the prepared datasets, use the provided bash script. This script uses `accelerate` to launch distributed training. 
+
+First, configure your `accelerate` environment to use 8 GPUs:
+```bash
+accelerate config
+```
+*(When prompted, select "This machine", "multi-GPU", and specify `8` for the number of GPUs).*
 
 We train the model using **8 GPUs** for approximately **50 hours** with a global batch size of **128** (`WORLD_SIZE=8`, `ACCUMULATION_STEPS=16`, `train_batch_size=1`).
 
