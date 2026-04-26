@@ -32,13 +32,13 @@ First, create a directory to store all your datasets:
 mkdir -p data
 ```
 
-### 📥 Download HPDv3
+### 📥 Download [HPDv3](https://huggingface.co/datasets/ymhao/HPDv3)
 ```bash
 hf download ymhao/HPDv3 --repo-type dataset --local-dir data/HPDv3
 python utils/generate_hpdv3_test.py
 ```
 
-### 📥 Download ImageRewardDB
+### 📥 Download [ImageRewardDB](https://huggingface.co/datasets/zai-org/ImageRewardDB)
 ```bash
 mkdir -p data/ImageRewardDB
 hf download zai-org/ImageRewardDB --repo-type dataset --local-dir data/ImageRewardDB
@@ -47,14 +47,14 @@ seq 1 2 | xargs -I {} unzip data/ImageRewardDB/images/test/test_{}.zip -d data/I
 python utils/generate_imagerewarddb_test.py 
 ```
 
-### 📥 Download HPDv2
+### 📥 Download [HPDv2](https://huggingface.co/datasets/ymhao/HPDv2)
 ```bash
 hf download ymhao/HPDv2 --include test.tar.gz test.json --repo-type dataset --local-dir data/HPDv2
 tar -xvf data/HPDv2/test.tar.gz -C data/HPDv2
 python utils/generate_hpdv2_test.py 
 ```
 
-### 📥 Download Pick-a-Pic v2
+### 📥 Download [Pick-a-Pic v2](https://huggingface.co/datasets/liuhuohuo2/pick-a-pic-v2)
 ```bash
 hf download liuhuohuo2/pick-a-pic-v2 --repo-type dataset --local-dir data/Pickapic
 python utils/generate_pickapic.py
@@ -70,7 +70,7 @@ python utils/concat_datasets.py
 
 ## 🧠 Model Preparation
 
-### 🌟 LRMM-SD3 (Pre-trained)
+### 🌟 [LRMM-SD3](https://huggingface.co/whynot0128/LRMM-SD3) (Pre-trained)
 You can use our pre-trained model hosted on Hugging Face:
 ```bash
 hf download whynot0128/LRMM-SD3 --local-dir ./output/SD3_Reward/transformer
@@ -80,7 +80,7 @@ hf download whynot0128/LRMM-SD3 --local-dir ./output/SD3_Reward/transformer
 ### ⚖️ Reward Models
 > 💡 **Note:** `PickScore`, `ImageReward`, `AestheticScorer`, and `HPSv2` models will be **automatically downloaded** from Hugging Face when you run the reward scripts for the first time.
 
-#### 🔧 HPSv3 
+#### 🔧 [HPSv3](https://github.com/MizzenAI/HPSv3)
 Due to dependency conflicts, HPSv3 requires being deployed as an API service on a **separate server**:
 
 ```bash
