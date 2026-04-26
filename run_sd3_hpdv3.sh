@@ -2,12 +2,12 @@
 export HF_ENDPOINT=https://hf-mirror.com
 
 # 固定参数
-MODEL_NAME="../stable-diffusion-3"
-DATASET_NAME="../" # make sure "pickapic" in dataset_name
+MODEL_NAME="stabilityai/stable-diffusion-3-medium-diffusers"
+DATASET_NAME="./data" # point to the combined data folder
 WORLD_SIZE=8
 ACCUMULATION_STEPS=16
 BATCH_SIZE=$((WORLD_SIZE * ACCUMULATION_STEPS))
-CACHE_DIR="../huggingface_cache/datasets"
+CACHE_DIR="./huggingface_cache/datasets"
 MAX_TRAIN_STEPS=60000
 MIXED_PRECISION="bf16"
 DATALOADER_WORKERS=8
@@ -15,7 +15,10 @@ LR=5e-6
 
 
 RUN_NAME="All_lr${LR}_bs${BATCH_SIZE}_special_mlp_layer11_all_size512_rewardzero"
-OUTPUT_DIR="../output/SD3_Reward/${RUN_NAME}"
+OUTPUT_DIR="./output/SD3_Reward/${RUN_NAME}"
+
+# Ensure output directory exists
+mkdir -p "$OUTPUT_DIR"
 
 accelerate launch train.py \
   --pretrained_model_name_or_path="$MODEL_NAME" \
@@ -38,4 +41,3 @@ accelerate launch train.py \
   --tracker_project_name="$RUN_NAME" \
   --reward_token special \
   --rm_head_type mlp \
-
