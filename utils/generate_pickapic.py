@@ -7,7 +7,7 @@ from datasets import load_dataset
 from PIL import Image
 
 # --- 配置 ---
-output_base_dir = "Pickapic"
+output_base_dir = "data/Pickapic"
 images_dir = os.path.join(output_base_dir, "images")
 os.makedirs(images_dir, exist_ok=True)
 
@@ -36,8 +36,8 @@ def save_original_format_task(img_bytes, name):
 dataset = load_dataset(
     "parquet",
     data_files={
-        "train": "Pickapic/data/train-*.parquet",
-        "test": "Pickapic/data/test-*.parquet"
+        "train": "data/Pickapic/data/train-*.parquet",
+        "test": "data/Pickapic/data/test-*.parquet"
     },
 )
 
@@ -77,15 +77,15 @@ def process_split(split_name):
             if split_name=='train':
                 metadata.append({
                     'prompt': example['caption'],
-                    'path1': f"Pickapic/images/{win_uid}.jpg",
-                    'path2': f"Pickapic/images/{lose_uid}.jpg",
+                    'path1': f"data/Pickapic/images/{win_uid}.jpg",
+                    'path2': f"data/Pickapic/images/{lose_uid}.jpg",
                     "confidence": [],
                     "choice_dist": [],
                 })
             elif split_name=='test':
                 metadata.append({
                     "prompt": example['caption'],
-                    "images": [f"Pickapic/images/{win_uid}.jpg", f"Pickapic/images/{lose_uid}.jpg"],
+                    "images": [f"data/Pickapic/images/{win_uid}.jpg", f"data/Pickapic/images/{lose_uid}.jpg"],
                     "rank": [0, 1],
                 })
 
@@ -101,10 +101,10 @@ train_metadata = process_split('train')
 test_metadata = process_split('test')
 
 # 3. 保存 JSON
-with open("Pickapic_train.json", 'w', encoding='utf-8') as f:
+with open("data/Pickapic_train.json", 'w', encoding='utf-8') as f:
     json.dump(train_metadata, f, indent=4, ensure_ascii=False)
 
-with open("Pickapic_test.json", 'w', encoding='utf-8') as f:
+with open("data/Pickapic_test.json", 'w', encoding='utf-8') as f:
     json.dump(test_metadata, f, indent=4, ensure_ascii=False)
 
 print("全部完成！")
